@@ -1,0 +1,15 @@
+{
+  "name": "alphie",
+  "version": "1.0.0",
+  "description": "Node OAuth Server & user management",
+  "main": "index.js",
+  "author": "Tiago Nobrega",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "sh ./startup.sh"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

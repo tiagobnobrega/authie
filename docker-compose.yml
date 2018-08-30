@@ -1,0 +1,34 @@
+# authie stack composer file
+version: '3.1'
+services:
+  node:
+    container_name: authie_app
+    user: "node"
+    build: "./app"
+    working_dir: "/home/node/app"
+    environment:
+      # - NODE_ENV=production # toggle production mode
+      - NODE_ENV=development # toggle development mode
+    volumes:
+      - "./app:/home/node/app"
+      - node_modules:/home/node/app/node_modules
+    ports:
+      - "8081:3000" #might need to change exposed as port
+    command: "yarn start"
+    depends_on:
+     - db
+  db:
+    container_name: authie_db
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_USER=authie
+      - MYSQL_PASSWORD=authie
+      - MYSQL_DATABASE=authie
+    volumes:
+      - "./db_data:/var/lib/mysql"
+    ports:
+     - "3306:3306" #might need to change exposed as port
+volumes:
+  node_modules:
